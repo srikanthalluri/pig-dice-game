@@ -9,17 +9,30 @@ GAME RULES:
 
 */
 let scores, roundScore, activePlayer, dice;
-scores = [0, 0];
-currentScore = 0;
-activePlayer = 0;
 let diceImg = document.querySelector(".dice");
-diceImg.style.display = "none";
+init();
+//Initializing the game with their default values
+function init() {
+    scores = [0, 0];
+    currentScore = 0;
+    activePlayer = 0;
+    diceImg.style.display = "none";
+    document.getElementById("score-0").textContent = "0";
+    document.getElementById("score-1").textContent = "0";
+    document.getElementById("current-0").textContent = "0";
+    document.getElementById("current-1").textContent = "0";
+    let player1 = document.querySelector(".player-0-panel");
+    let player2 = document.querySelector(".player-1-panel");
+    document.getElementById("name-0").textContent = "Player 1";
+    document.getElementById("name-1").textContent = "Player 2";
+    player1.classList.remove("winner");
+    player2.classList.remove("winner");
+    player1.classList.remove("active");
+    player1.classList.add("active");
+    player2.classList.remove("active");
+}
 
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
-
+// Toggling the active players
 function changeActivePlayer() {
     diceImg.style.display = "none";
     let prevActivePlayer = document.querySelector(
@@ -71,3 +84,5 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
         changeActivePlayer();
     }
 });
+
+document.querySelector(".btn-new").addEventListener("click", init);
