@@ -77,7 +77,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
         if (input) {
             winningScore = input;
         } else {
-            winningScore = 20;
+            winningScore = 30;
         }
         scores[activePlayer] += currentScore;
         document.getElementById("score-" + activePlayer).textContent =
