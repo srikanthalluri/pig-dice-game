@@ -10,6 +10,7 @@ GAME RULES:
 */
 let scores, roundScore, activePlayer, dice, gamePlaying;
 let diceImg = document.querySelector(".dice");
+let winningScore;
 init();
 //Initializing the game with their default values
 function init() {
@@ -18,6 +19,7 @@ function init() {
     activePlayer = 0;
     gamePlaying = true;
     diceImg.style.display = "none";
+    document.querySelector(".final-score").value = "";
     document.getElementById("score-0").textContent = "0";
     document.getElementById("score-1").textContent = "0";
     document.getElementById("current-0").textContent = "0";
@@ -71,6 +73,12 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 
 document.querySelector(".btn-hold").addEventListener("click", function() {
     if (gamePlaying) {
+        let input = document.querySelector(".final-score").value;
+        if (input) {
+            winningScore = input;
+        } else {
+            winningScore = 20;
+        }
         scores[activePlayer] += currentScore;
         document.getElementById("score-" + activePlayer).textContent =
             scores[activePlayer];
@@ -78,7 +86,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
         document.getElementById(
             "current-" + activePlayer
         ).textContent = currentScore;
-        if (scores[activePlayer] >= 20) {
+        if (scores[activePlayer] >= winningScore) {
             document.getElementById("name-" + activePlayer).textContent = "Winner!";
             diceImg.style.display = "none";
             let playerPannel = document.querySelector(
